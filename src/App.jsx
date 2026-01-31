@@ -109,8 +109,16 @@ const Portfolio = () => {
             link: "https://www.instagram.com/reel/DK9stsgpNOn/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
             className: "md:mt-12" // Efek turun sedikit untuk item tengah
         },
-    ];
 
+        {
+            title: "Ketapang indah",
+            category: "Drive",
+            image: "porto10.png", // Ganti dengan gambar thumbnail video
+            link: "https://drive.google.com/file/d/1h7ZIocjhvKZnsV91g0JIY1UzBbgOldEG/view?usp=sharing",
+            className: "md:mt-12" // Efek turun sedikit untuk item tengah 
+
+        },
+    ];
     return (
         <div className="min-h-screen bg-[#191919] text-white font-sans overflow-x-hidden selection:bg-[#5454D4] selection:text-white">
 
