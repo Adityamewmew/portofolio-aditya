@@ -136,6 +136,24 @@ const Portfolio = () => {
             className: "md:mt-12" // Efek turun sedikit untuk item tengah 
 
         },
+
+        {
+            title: "PKM HMJBI",
+            category: "Instagram",
+            image: "porto13.png", // Ganti dengan gambar thumbnail video
+            link: "https://www.instagram.com/reel/C3zy09BPy2a/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+            className: "md:mt-12" // Efek turun sedikit untuk item tengah 
+
+        },
+
+        {
+            title: "COMMIT HMJBI",
+            category: "Instagram",
+            image: "porto14.png", // Ganti dengan gambar thumbnail video
+            link: "https://www.instagram.com/reel/C44slCkPa8y/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+            className: "md:mt-12" // Efek turun sedikit untuk item tengah 
+
+        },
     ];
     return (
         <div className="min-h-screen bg-[#191919] text-white font-sans overflow-x-hidden selection:bg-[#5454D4] selection:text-white">
