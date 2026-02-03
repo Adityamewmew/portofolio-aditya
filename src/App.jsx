@@ -118,6 +118,24 @@ const Portfolio = () => {
             className: "md:mt-12" // Efek turun sedikit untuk item tengah 
 
         },
+
+        {
+            title: "Poliwangi",
+            category: "Instagram",
+            image: "porto11.png", // Ganti dengan gambar thumbnail video
+            link: "https://www.instagram.com/reel/DTcEVr7kloC/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+            className: "md:mt-12" // Efek turun sedikit untuk item tengah 
+
+        },
+
+        {
+            title: "Konten Irma",
+            category: "Instagram",
+            image: "porto12.png", // Ganti dengan gambar thumbnail video
+            link: "https://www.instagram.com/reel/DUSs_vgCd1X/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+            className: "md:mt-12" // Efek turun sedikit untuk item tengah 
+
+        },
     ];
     return (
         <div className="min-h-screen bg-[#191919] text-white font-sans overflow-x-hidden selection:bg-[#5454D4] selection:text-white">
