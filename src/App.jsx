@@ -1,9 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, Code, PenTool, Layout, Smartphone, Globe, Database, Server, Camera, Play, ExternalLink, Mail, Phone } from 'lucide-react';
+import { Menu, X, ArrowRight, Code, PenTool, Layout, Smartphone, Globe, Database, Server, Camera, Play, ExternalLink, Mail, Phone, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const LazyImage = ({ src, alt, className }) => {
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    return (
+        <div className="relative w-full h-full bg-[#252532] overflow-hidden">
+            {!isLoaded && (
+                <div className="absolute inset-0 animate-shimmer"></div>
+            )}
+            <img
+                src={src}
+                alt={alt}
+                loading="lazy"
+                onLoad={() => setIsLoaded(true)}
+                className={`transition-opacity duration-700 ease-in-out ${className} ${
+                    isLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+            />
+        </div>
+    );
+};
 
 const Portfolio = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState("Semua");
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6;
 
     // GANTI NAMA ANDA DI SINI
     const yourName = "Aditya Purnama Herlambang";
@@ -45,116 +69,117 @@ const Portfolio = () => {
         {
             title: "Safety Induction",
             category: "Google Drive",
-            image: "porto1.png", // Ganti dengan gambar thumbnail video
-            link: "https://drive.google.com/file/d/1kSA9oudueCjetEInDQmu6FmqN1xXRr-1/view?usp=drive_link",
-            className: ""
+            image: "porto1.webp",
+            link: "https://drive.google.com/file/d/1kSA9oudueCjetEInDQmu6FmqN1xXRr-1/view?usp=drive_link"
         },
         {
             title: "Jemparingan",
             category: "Google Drive",
-            image: "porto2.png", // Ganti dengan gambar thumbnail video
-            link: "https://drive.google.com/file/d/1FSTLt298oh23GxWRZ4K1a3tBANq4jQp8/view?usp=drive_link",
-            className: "md:mt-12" // Efek turun sedikit untuk item tengah
+            image: "porto2.webp",
+            link: "https://drive.google.com/file/d/1FSTLt298oh23GxWRZ4K1a3tBANq4jQp8/view?usp=drive_link"
         },
         {
             title: "Ambang(Short film)",
-            category: "Social Media",
-            image: "porto3.png", // Ganti dengan gambar thumbnail video
-            link: "https://www.instagram.com/reel/DRegvR7j7t2/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-            className: ""
+            category: "Instagram",
+            image: "porto3.webp",
+            link: "https://www.instagram.com/reel/DRegvR7j7t2/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
         },
-
         {
             title: "OMG X Gandrung Sewu",
-            category: "Social Media",
-            image: "porto4.png", // Ganti dengan gambar thumbnail video
-            link: "https://www.instagram.com/reel/DQl4gPvElc7/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-            className: "md:mt-12" // Efek turun sedikit untuk item tengah
+            category: "Instagram",
+            image: "porto4.webp",
+            link: "https://www.instagram.com/reel/DQl4gPvElc7/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
         },
         {
             title: "Company Profile HMJBI 2025",
             category: "Youtube",
-            image: "porto5.png", // Ganti dengan gambar thumbnail video
-            link: "https://youtu.be/FH6rZKw6U34?si=Houmzjok7Iuy3t7a",
-            className: "md:mt-12" // Efek turun sedikit untuk item tengah
+            image: "porto5.webp",
+            link: "https://youtu.be/FH6rZKw6U34?si=Houmzjok7Iuy3t7a"
         },
         {
             title: "Company Profile Satgas PPKPT",
-            category: "Social Media",
-            image: "porto6.png", // Ganti dengan gambar thumbnail video
-            link: "https://www.instagram.com/reel/DM6-P9MyLRq/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-            className: "md:mt-12" // Efek turun sedikit untuk item tengah
+            category: "Instagram",
+            image: "porto6.webp",
+            link: "https://www.instagram.com/reel/DM6-P9MyLRq/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
         },
-
         {
             title: "OMG X BEC",
-            category: "Social Media",
-            image: "porto7.png", // Ganti dengan gambar thumbnail video
-            link: "https://www.instagram.com/reel/DMVaVvQTyjk/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-            className: "md:mt-12" // Efek turun sedikit untuk item tengah
+            category: "Instagram",
+            image: "porto7.webp",
+            link: "https://www.instagram.com/reel/DMVaVvQTyjk/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
         },
-
         {
             title: "Angkatan 2024 SMK PGRI 1 GIRI",
             category: "Google Drive",
-            image: "porto8.png", // Ganti dengan gambar thumbnail video
-            link: "https://drive.google.com/file/d/1THM5YVp47HBznI3TWyVSHhdjrSmCkOMa/view?usp=drive_link",
-            className: "md:mt-12" // Efek turun sedikit untuk item tengah
+            image: "porto8.webp",
+            link: "https://drive.google.com/file/d/1THM5YVp47HBznI3TWyVSHhdjrSmCkOMa/view?usp=drive_link"
         },
-
         {
             title: "Dance Rock Ur Body",
-            category: "Social Media",
-            image: "porto9.png", // Ganti dengan gambar thumbnail video
-            link: "https://www.instagram.com/reel/DK9stsgpNOn/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-            className: "md:mt-12" // Efek turun sedikit untuk item tengah
+            category: "Instagram",
+            image: "porto9.webp",
+            link: "https://www.instagram.com/reel/DK9stsgpNOn/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
         },
-
         {
             title: "Ketapang indah",
-            category: "Drive",
-            image: "porto10.png", // Ganti dengan gambar thumbnail video
-            link: "https://drive.google.com/file/d/1h7ZIocjhvKZnsV91g0JIY1UzBbgOldEG/view?usp=sharing",
-            className: "md:mt-12" // Efek turun sedikit untuk item tengah 
-
+            category: "Google Drive",
+            image: "porto10.webp",
+            link: "https://drive.google.com/file/d/1h7ZIocjhvKZnsV91g0JIY1UzBbgOldEG/view?usp=sharing"
         },
-
         {
             title: "Poliwangi",
             category: "Instagram",
-            image: "porto11.png", // Ganti dengan gambar thumbnail video
-            link: "https://www.instagram.com/reel/DTcEVr7kloC/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-            className: "md:mt-12" // Efek turun sedikit untuk item tengah 
-
+            image: "porto11.webp",
+            link: "https://www.instagram.com/reel/DTcEVr7kloC/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
         },
-
         {
             title: "Konten Irma",
             category: "Instagram",
-            image: "porto12.png", // Ganti dengan gambar thumbnail video
-            link: "https://www.instagram.com/reel/DUSs_vgCd1X/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-            className: "md:mt-12" // Efek turun sedikit untuk item tengah 
-
+            image: "porto12.webp",
+            link: "https://www.instagram.com/reel/DUSs_vgCd1X/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
         },
-
         {
             title: "PKM HMJBI",
             category: "Instagram",
-            image: "porto13.png", // Ganti dengan gambar thumbnail video
-            link: "https://www.instagram.com/reel/C3zy09BPy2a/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-            className: "md:mt-12" // Efek turun sedikit untuk item tengah 
-
+            image: "porto13.webp",
+            link: "https://www.instagram.com/reel/C3zy09BPy2a/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
         },
-
         {
             title: "COMMIT HMJBI",
             category: "Instagram",
-            image: "porto14.png", // Ganti dengan gambar thumbnail video
-            link: "https://www.instagram.com/reel/C44slCkPa8y/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-            className: "md:mt-12" // Efek turun sedikit untuk item tengah 
-
+            image: "porto14.webp",
+            link: "https://www.instagram.com/reel/C44slCkPa8y/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+        },
+        {
+            title: "BTS Video Angkatan 2026",
+            category: "Google Drive",
+            image: "porto15.webp",
+            link: "https://drive.google.com/file/d/18t8l9YW2l0viHBPDmOrfPWy_S95mL3tq/view?usp=drive_link"
+        },
+        {
+            title: "BTS Film Gandrung",
+            category: "Instagram",
+            image: "porto16.webp",
+            link: "https://drive.google.com/drive/folders/10Z8DAD_iNNLPJl1OrK1G5hNG2xiGb2OK?usp=sharing"
         },
     ];
+
+    // Filter and Pagination Calculations
+    const categories = ["Semua", "Google Drive", "Instagram", "Youtube"];
+
+    const handleCategoryChange = (category) => {
+        setSelectedCategory(category);
+        setCurrentPage(1);
+    };
+
+    const filteredItems = selectedCategory === "Semua"
+        ? portfolioItems
+        : portfolioItems.filter(item => item.category === selectedCategory);
+
+    const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
     return (
         <div className="min-h-screen bg-[#191919] text-white font-sans overflow-x-hidden selection:bg-[#5454D4] selection:text-white">
 
@@ -241,7 +266,7 @@ const Portfolio = () => {
                             <div className="absolute inset-0 bg-gradient-to-tr from-[#5454D4] to-pink-500 rounded-[2rem] rotate-6 group-hover:rotate-3 transition-transform duration-500 opacity-60 blur-sm"></div>
                             <div className="relative bg-[#252532] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
                                 {/* FOTO ANDA */}
-                                <img src="1.png" alt={yourName} className="w-full h-auto object-cover opacity-100 hover:scale-105 transition-transform duration-700" />
+                                <img src="1.webp" fetchpriority="high" alt={yourName} className="w-full h-auto object-cover opacity-100 hover:scale-105 transition-transform duration-700" />
                             </div>
                         </div>
                     </div>
@@ -315,28 +340,124 @@ const Portfolio = () => {
 
             {/* Portfolio Section */}
             <section id="portfolio" className="py-20 container mx-auto px-6">
-                <h2 className="text-3xl md:text-5xl font-bold mb-16 leading-tight">
-                    Portofolio Luar Biasa Saya
-                </h2>
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+                    <div>
+                        <h2 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
+                            Portofolio Luar Biasa Saya
+                        </h2>
+                        <p className="text-gray-400">Menampilkan karya video, desain, dan produksi terbaik saya.</p>
+                    </div>
+                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-                    {portfolioItems.map((project, idx) => (
-                        <a key={idx} href={project.link} target="_blank" rel="noopener noreferrer" className={`md:col-span-1 bg-[#1F1D2B] p-4 rounded-3xl group cursor-pointer hover:-translate-y-2 transition-transform duration-300 block ${project.className}`}>
-                            <div className="overflow-hidden rounded-2xl h-[400px] relative">
-                                <img src={project.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt={project.title} />
-                                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">
-                                    <ExternalLink size={32} className="text-white mb-2" />
-                                    <span className="text-white font-bold text-lg">{project.title}</span>
-                                    <span className="text-[#5454D4] text-sm bg-white/10 px-3 py-1 rounded-full">Klik untuk melihat</span>
-                                </div>
-                            </div>
-                            <div className="mt-4 px-2">
-                                <h4 className="text-lg font-bold">{project.title}</h4>
-                                <p className="text-sm text-gray-400">{project.category}</p>
-                            </div>
-                        </a>
+                {/* Category Filter Tabs */}
+                <div className="flex flex-wrap gap-3 mb-12">
+                    {categories.map((category) => (
+                        <button
+                            key={category}
+                            onClick={() => handleCategoryChange(category)}
+                            className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                                selectedCategory === category
+                                    ? "bg-[#5454D4] text-white shadow-lg shadow-[#5454D4]/30"
+                                    : "bg-[#1F1D2B] text-gray-400 hover:text-white border border-white/5 hover:border-white/10"
+                            }`}
+                        >
+                            {category}
+                        </button>
                     ))}
                 </div>
+
+                {/* Portfolio Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start min-h-[500px]">
+                    {currentItems.map((project, idx) => {
+                        const staggerClass = idx % 3 === 1 ? "md:mt-12" : "";
+                        return (
+                            <a
+                                key={idx}
+                                href={project.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`md:col-span-1 bg-[#1F1D2B] p-4 rounded-3xl group cursor-pointer hover:-translate-y-2 transition-transform duration-300 block ${staggerClass}`}
+                            >
+                                <div className="overflow-hidden rounded-2xl h-[400px] relative">
+                                    <LazyImage
+                                        src={project.image}
+                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                        alt={project.title}
+                                    />
+                                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">
+                                        <ExternalLink size={32} className="text-white mb-2" />
+                                        <span className="text-white font-bold text-lg">{project.title}</span>
+                                        <span className="text-[#5454D4] text-sm bg-white/10 px-3 py-1 rounded-full">
+                                            Klik untuk melihat
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="mt-4 px-2">
+                                    <h4 className="text-lg font-bold">{project.title}</h4>
+                                    <p className="text-sm text-gray-400">{project.category}</p>
+                                </div>
+                            </a>
+                        );
+                    })}
+                </div>
+
+                {/* Pagination Controls */}
+                {totalPages > 1 && (
+                    <div className="flex justify-center items-center gap-1.5 md:gap-2 mt-16 flex-nowrap">
+                        <button
+                            onClick={() => {
+                                if (currentPage > 1) {
+                                    setCurrentPage(currentPage - 1);
+                                    document.getElementById("portfolio").scrollIntoView({ behavior: "smooth" });
+                                }
+                            }}
+                            disabled={currentPage === 1}
+                            className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl border border-white/5 transition-all duration-300 ${
+                                currentPage === 1
+                                    ? "text-gray-600 bg-[#1F1D2B]/30 cursor-not-allowed"
+                                    : "text-white bg-[#1F1D2B] hover:bg-[#5454D4]/20 hover:border-[#5454D4]/50"
+                            }`}
+                            aria-label="Halaman Sebelumnya"
+                        >
+                            <ChevronLeft size={18} />
+                        </button>
+
+                        {Array.from({ length: totalPages }, (_, idx) => idx + 1).map((pageNum) => (
+                            <button
+                                key={pageNum}
+                                onClick={() => {
+                                    setCurrentPage(pageNum);
+                                    document.getElementById("portfolio").scrollIntoView({ behavior: "smooth" });
+                                }}
+                                className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl text-sm font-medium transition-all duration-300 ${
+                                    currentPage === pageNum
+                                        ? "bg-[#5454D4] text-white shadow-lg shadow-[#5454D4]/30 border border-[#5454D4]"
+                                        : "bg-[#1F1D2B] text-gray-400 hover:text-white border border-white/5 hover:border-white/10"
+                                }`}
+                            >
+                                {pageNum}
+                            </button>
+                        ))}
+
+                        <button
+                            onClick={() => {
+                                if (currentPage < totalPages) {
+                                    setCurrentPage(currentPage + 1);
+                                    document.getElementById("portfolio").scrollIntoView({ behavior: "smooth" });
+                                }
+                            }}
+                            disabled={currentPage === totalPages}
+                            className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl border border-white/5 transition-all duration-300 ${
+                                currentPage === totalPages
+                                    ? "text-gray-600 bg-[#1F1D2B]/30 cursor-not-allowed"
+                                    : "text-white bg-[#1F1D2B] hover:bg-[#5454D4]/20 hover:border-[#5454D4]/50"
+                            }`}
+                            aria-label="Halaman Selanjutnya"
+                        >
+                            <ChevronRight size={18} />
+                        </button>
+                    </div>
+                )}
             </section>
 
             {/* Contact Section */}
